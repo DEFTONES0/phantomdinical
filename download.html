@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DOWNLOADS - PHANTOM DINICAL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Anuphan:wght@300;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-color: #080808;
+            --card-bg: #111111;
+            --border-color: #222222;
+            --accent-red: #c21d1d;
+            --accent-green: #4caf50;
+            --accent-lavender: #e0b0ff;
+            --text-main: #ffffff;
+            --text-muted: #888888;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Anuphan', sans-serif;
+            padding: 20px 15px;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; }
+
+        /* Header & Nav */
+        header { margin-bottom: 30px; }
+        .brand {
+            font-family: 'Michroma', sans-serif;
+            font-size: 24px;
+            color: var(--accent-red);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Upload Section */
+        .upload-section {
+            background: var(--card-bg);
+            border: 2px dashed var(--border-color);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 40px;
+            transition: border-color 0.3s;
+        }
+        .upload-section:hover { border-color: var(--accent-lavender); }
+        
+        .upload-btn {
+            background: var(--accent-red);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+            font-family: 'Michroma', sans-serif;
+            font-size: 10px;
+            cursor: pointer;
+            margin-top: 15px;
+            text-transform: uppercase;
+        }
+
+        /* File List Section */
+        h2 {
+            font-family: 'Michroma', sans-serif;
+            font-size: 14px;
+            color: var(--accent-lavender);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .file-list { display: flex; flex-direction: column; gap: 10px; }
+
+        .file-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 15px 20px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .file-info h3 { font-size: 14px; margin-bottom: 4px; font-weight: 500; }
+        .file-info span { font-size: 11px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+
+        .download-icon { color: var(--accent-green); cursor: pointer; transition: transform 0.2s; }
+        .download-icon:active { transform: scale(1.2); }
+
+        input[type="file"] { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="brand">PHANTOM DINICAL</a>
+        </header>
+
+        <main>
+            <section class="upload-section">
+                <i data-lucide="upload-cloud" style="width: 40px; height: 40px; color: var(--text-muted);"></i>
+                <p style="margin-top: 10px; font-size: 14px; color: var(--text-muted);">เลือกไฟล์ที่ต้องการแบ่งปันลงในระบบ</p>
+                <label for="file-upload" class="upload-btn">เลือกไฟล์</label>
+                <input type="file" id="file-upload">
+            </section>
+
+            <h2><i data-lucide="folder-down" style="width:16px"></i> AVAILABLE_RESOURCES</h2>
+            
+            <div class="file-list">
+                <div class="file-item">
+                    <div class="file-info">
+                        <h3>kali-linux-custom-iso.zip</h3>
+                        <span>Size: 2.4 GB | Uploaded: 2026-04-26</span>
+                    </div>
+                    <div class="download-icon"><i data-lucide="download"></i></div>
+                </div>
+
+                <div class="file-item">
+                    <div class="file-info">
+                        <h3>network_scanner_script.sh</h3>
+                        <span>Size: 12 KB | Uploaded: 2026-04-25</span>
+                    </div>
+                    <div class="download-icon"><i data-lucide="download"></i></div>
+                </div>
+            </div>
+        </main>
+
+        <footer style="text-align: center; margin-top: 50px; color: var(--text-muted); font-size: 10px; font-family: 'JetBrains Mono';">
+            <p>SYSTEM_STORAGE_ACTIVE | TOTAL_FILES: 2</p>
+        </footer>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // ฟังก์ชันจำลองการเลือกไฟล์
+        document.getElementById('file-upload').addEventListener('change', function(e) {
+            if(this.files[0]) {
+                alert('กำลังเตรียมการอัปโหลดไฟล์: ' + this.files[0].name + '\n(หมายเหตุ: การอัปโหลดจริงต้องใช้ Backend เช่น PHP หรือ Node.js)');
+            }
+        });
+    </script>
+</body>
+</html>
